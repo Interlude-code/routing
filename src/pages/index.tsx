@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import { FormEvent } from "react";
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const router = useRouter()
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -25,6 +27,8 @@ export default function Home() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(formDataObject)
+    }).then((e) => {
+      router.reload()
     })
  
     // // Handle response if necessary
